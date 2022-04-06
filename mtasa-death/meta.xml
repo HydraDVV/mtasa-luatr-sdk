@@ -1,0 +1,4 @@
+<meta>
+	<script src="timer.lua" type="client" cache="false"/>
+	<script src="events.lua" type="server" cache="false"/>
+</meta>
