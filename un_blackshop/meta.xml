@@ -1,0 +1,20 @@
+<meta>
+
+    <oop>true</oop>
+
+    <!--
+      @author bekiroj
+      MTA:SA BLACK MARKET
+    -->
+
+    <script src='config.lua' type='client' cache='false'/>
+
+    <script src='packages/class.lua' type='client' cache='false'/>
+
+    <script src='core/main.lua' type='client' cache='false'/>
+    <script src='core/client.lua' type='client' cache='false'/>
+    <script src='core/server.lua' type='server'/>
+
+    <file src='components/Roboto.ttf'/>
+
+</meta>
