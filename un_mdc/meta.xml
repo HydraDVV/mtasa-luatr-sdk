@@ -1,0 +1,36 @@
+<meta>
+
+    <!-- 
+
+        ©sourcelua Copyright 
+
+        mdc-system
+
+    -->
+
+    <script type="client" src="lua/client.lua"   cache="false" />
+    <script type="server" src="lua/server.lua"   cache="false" />
+    <script type="server" src="lua/accounts.lua" cache="false" />
+    <script type="server" src="lua/wanteds.lua"  cache="false" />
+    <script type="server" src="lua/records.lua"  cache="false" />
+
+    <file src="index.html" type="client" />
+
+	<file src="js/mtaevents.js"   cache="false" />
+    <file src="js/solid.js"       cache="false" />
+	<file src="js/brands.js"      cache="false" />
+	<file src="js/fontawesome.js" cache="false" />
+	<file src="js/vue.js"         cache="false" />
+	<file src="js/index.js"       cache="false" />
+
+    <file src="js/framework.js"       cache="false" />
+    <file src="js/jquery.min.js"       cache="false" />
+
+    <file src="assets/karla.ttf"  />
+    <file src="assets/tablet.png" />
+    <file src="assets/lspd.png"   />
+    <file src="assets/index.css"  />
+
+    <oop>true</oop>
+
+</meta>

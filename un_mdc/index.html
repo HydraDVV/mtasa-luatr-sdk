@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="tr">
+    <head>
+        <meta charset="UTF-8">
+        <script src="js/vue.js"></script>
+        <script defer src="js/brands.js"></script>
+        <script defer src="js/solid.js"></script>
+        <script defer src="js/fontawesome.js"></script>
+        <link rel="stylesheet" href="assets/index.css">
+    </head>
+<body>
+    
+    <div id="app">
+
+        <div class="mdc-bg">
+
+            <div class="container">
+
+                <div class="login" v-if="page == 'login'">
+
+                    <div class="center">
+                        <span>Yönetim Paneline Giriş Yap</span><br>
+                        <br>
+                        <input id="username" type="text" placeholder="Kullanıcı adı!"><br>
+                        <input id="password" placeholder="Şifre" type="password"><br>
+                        <br>
+                        <button onclick="mta.triggerEvent('mdc.login' , document.getElementById('username').value , document.getElementById('password').value)">Giriş yap!</button><br>
+                        <button onclick="mta.triggerEvent('mdc.close')" style="position: relative; margin-top: 15px; background: firebrick;">Kapat</button>
+                    </div> 
+
+                </div>
+
+                <div class="titlebar"> 
+
+                    <div style="position: absolute; margin-top: 310px; margin-left: 5px; color: #000;" v-if="page == 'login'">
+                        <span style="font-size: 14px;">©UNT</span>
+                    </div>
+
+                    <div id="menu">
+
+                        <br>
+                        <div class="hamburger-title" v-for="index in menulist" @click="page = index.page">
+                            <i :class="index.icon"></i>
+                            <span>{{index.title}}</span>
+                        </div>
+                        <div class="hamburger-title" onclick="mta.triggerEvent('mdc.close')">
+                            <i class="fas fa-times"></i>
+                            <span>Kapat</span>
+                        </div>
+
+                    </div>
+
+                    <div class="hamburgers" @click="hamburger = !hamburger" v-if="page != 'login'">
+                        <div class="hamburger"></div>
+                        <div class="hamburger"></div>
+                        <div class="hamburger"></div>
+                        <span>Menüler</span>
+                    </div>
+
+                    <div class="title-lspd">
+                        <span>Emniyet Müdürlüğü</span>
+                        <img src="assets/lspd.png">
+                    </div>
+
+                </div>
+
+                <div class="question" v-if="page == 'question'">
+                    
+                    <div class="center">
+
+                        <span>Araç, mülk veya kişi sorgula!</span><br>
+                        <br>
+                        <input id="typeInput" type="text" placeholder="Kişi, plaka veya mülk numarası">
+                        <br>
+                        <br>
+                        <div class="box">
+                            <input name="question" id="vehicle" type="radio">
+                            <label for="vehicle">Araç</label>
+                            <input name="question" id="home" type="radio">
+                            <label for="home">Mülk</label>
+                            <input name="question" id="personel" type="radio">
+                            <label for="personel">Kişi</label>
+                        </div>
+                        <br>
+                        <br>
+                        <button onclick="mta.triggerEvent('mdc.question' , document.getElementById('typeInput').value, document.getElementById('vehicle').checked, document.getElementById('home').checked)">Sorgula</button>
+
+                    </div>
+
+                </div>
+
+                <div class="wanteds" v-if="page == 'wanteds'">
+
+                    <div class="center">
+
+                        <table id="wanteds">
+                            <tr>
+                                <th>Sıralama</th>
+                                <th>İsim</th>
+                                <th>Suç</th>
+                                <th>Tarih</th>
+                            </tr>
+                            <tr v-for="wanted in wanteds">
+                                <td>{{wanted.rank}}</td>
+                                <td>{{wanted.name}}</td>
+                                <td>{{wanted.crime}}</td>
+                                <td>{{wanted.date}}</td>
+                            </tr>
+                        </table>
+
+                    </div>
+
+                </div>
+
+                <div class="add" v-if="page == 'add'">
+
+                    <div class="center">
+                        <br>
+                        <br>
+                        <span>Sicil kaydı veya arama kaydı ekle!</span><br>
+                        <br>
+                        <input id="findElement" type="text" placeholder="Kişi veya plaka">
+                        <input id="reasonCrime" type="text" placeholder="Açıklama, suç">
+                        <br>
+                        <br>
+                        <div class="box">
+                            <input name="add" id="record" type="radio">
+                            <label for="record">Sicil Kaydı</label>
+                            <input name="add" id="wanted" type="radio">
+                            <label for="wanted">Aranma Kaydı</label>
+                        </div>
+                        <br>
+                        <button onclick="mta.triggerEvent('mdc.insert' , document.getElementById('findElement').value, document.getElementById('reasonCrime').value, document.getElementById('record').checked)">Ekle</button>
+
+                    </div>
+
+                </div>
+
+                <div class="result" v-if="page == 'result'">
+
+                    <div class="tab">
+                        <span v-for="tabmenu in tablist" :class="tabmenu.class" 
+                        @click="changeTab(); tabmenu.class = 'ontab'; tabshow = tabmenu.title">{{tabmenu.title}}</span>
+                    </div>
+
+                    <div v-for="tabmenu in tablist" v-if="tabshow == tabmenu.title">
+                        
+                        <div class="personel" v-if="tabshow == 'Kişisel'">
+                            <br>
+                            <span class="tabSpan" style="border-bottom: 1px solid #000; font-size: 25px; top: 0px;">{{tabmenu.name}}</span><br><br>
+                            <span class="tabSpan">Kilo : {{tabmenu.weight}}</span><span class="tabSpan">Boy  : {{tabmenu.height}}</span>
+                            <br>
+                            <span class="tabSpan">Yaş  : {{tabmenu.age}}</span><span class="tabSpan">Irk  : {{tabmenu.race}}</span>
+                            <br>
+                            <br>
+                            <span class="tabSpan">Banka Parası : {{tabmenu.money}}</span><br>
+                            <span class="tabSpan">Telefon Numarası : {{tabmenu.phone}}</span><br>
+                        </div>
+
+                        <div class="vehicles" v-if="tabshow == 'Araçlar'">
+                            <div class="center">
+
+                                <table id="tabtable">
+                                    <tr>
+                                        <th>Şase</th>
+                                        <th>Plaka</th>
+                                        <th>Marka</th>
+                                        <th>Model</th>
+                                        <th>Renk</th>
+                                    </tr>
+                                    <tr v-for="vehicle in tabmenu.vehicles">
+                                        <td>{{vehicle.id}}</td>
+                                        <td>{{vehicle.plate}}</td>
+                                        <td>{{vehicle.brand}}</td>
+                                        <td>{{vehicle.model}}</td>
+                                        <td>{{vehicle.color}}</td>
+                                    </tr>
+                                </table>
+        
+                            </div>
+                        </div>
+
+                        <div class="interiors" v-if="tabshow == 'Mülkler'">
+                            <div class="center">
+
+                                <table id="tabtable">
+                                    <tr>
+                                        <th>Kapı No</th>
+                                        <th>İsim</th>
+                                        <th>Bölge</th>
+                                        <th>Tür</th>
+                                    </tr>
+                                    <tr v-for="interior in tabmenu.interiors">
+                                        <td>{{interior.id}}</td>
+                                        <td>{{interior.name}}</td>
+                                        <td>{{interior.zone}}</td>
+                                        <td>{{interior.tip}}</td>
+                                    </tr>
+                                </table>
+        
+                            </div>
+                        </div>
+
+                        <div class="records" v-if="tabshow == 'Geçmiş'">
+                            <div class="center">
+
+                                <table id="tabtable">
+                                    <tr>
+                                        <th>Suç</th>
+                                        <th>Tarih</th>
+                                    </tr>
+                                    <tr v-for="record in tabmenu.records">
+                                        <td>{{record.crime}}</td>
+                                        <td>{{record.date}}</td>
+                                    </tr>
+                                </table>
+        
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>  
+
+        </div>
+
+    </div>
+
+</body>
+
+    <script src="js/mtaevents.js"></script>
+    <script src="js/framework.js"></script>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/index.js"></script>
+
+</html>
