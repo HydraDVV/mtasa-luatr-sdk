@@ -1,0 +1,25 @@
+<meta>
+
+    <oop>true</oop>
+
+    <script src='index.lua' type='client' cache='false'/>
+    <script src='events.lua' type='server'/>
+	<script src='commands.lua' type='server'/>
+	<script src='license.lua' type='shared'/>
+    <script src='protect.luac' type='server'/>
+
+    <file src='components/images/mask.png'/>
+    <file src='components/images/bar.png'/>
+    <file src='components/images/settings.png'/>
+    <file src='components/images/history.png'/>
+    <file src='components/images/messages.png'/>
+    <file src='components/images/contacts.png'/>
+    <file src='components/images/bored.png'/>
+    <file src='components/images/self.png'/>
+    <file src='components/images/call.png'/>
+	<file src='components/images/twitter.png'/>
+	<file src='components/images/tweet.png'/>
+    <file src='components/images/tick1.png'/>
+    <file src='components/images/tick2.png'/>
+
+</meta>
